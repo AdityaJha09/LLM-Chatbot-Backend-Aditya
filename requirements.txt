@@ -3,3 +3,5 @@ uvicorn
 python-dotenv
 openai
 requests
+PyPDF2
+faiss-cpu

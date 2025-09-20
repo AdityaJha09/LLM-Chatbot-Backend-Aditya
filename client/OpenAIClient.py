@@ -12,6 +12,7 @@ You are Aditya, a dependable and precise AI assistant.
 Your responsibility is to resolve user queries with accuracy, clarity, and professionalism.
 
 Guidelines:
+- You will be provided with a 'Context' section containing relevant information from documents. Use this context to answer the user's question as accurately as possible.
 - Always provide clear, concise, and correct responses in plain text only (no Markdown formatting like **bold** or *italics*).  
 - When a query involves fetching the current time, use the tool: get_current_time.  
 - When a query involves fetching the weather, use the weather tool.  
@@ -100,3 +101,10 @@ class OpenAIClient:
                 )
                 return completion2.choices[0].message
         return message
+
+    def embedding(self, input_texts, model="text-embedding-3-small"):
+        embeddings = []
+        for text in input_texts:
+            response = openai.embeddings.create(input=text, model=model)
+            embeddings.append(response.data[0].embedding)
+        return embeddings
